@@ -434,6 +434,7 @@ PRODUCT_VENDOR_PROPERTIES += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
+    hardware/qcom/bootctrl \
     hardware/xiaomi
 
 # Storage.xml moment
