@@ -321,7 +321,7 @@ PRODUCT_PACKAGES += \
 
 # Overlays
 PRODUCT_PACKAGES += \
-    AOSPABengalFrameworksOverlay \
+    P404BengalFrameworksOverlay \
     BengalCarrierConfigOverlay \
     BengalFrameworksOverlay \
     BengalSettingsOverlay \
@@ -337,7 +337,7 @@ PRODUCT_COPY_FILES += \
 # Public libraries
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
-    
+
 # Rootdir / Init files
 PRODUCT_PACKAGES += \
     init.goodix.events.sh \
