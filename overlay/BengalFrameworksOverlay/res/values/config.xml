@@ -203,7 +203,7 @@
          or a single SIM device can have 1 phones/logical modems, but 2 physical slots (one eSIM
          and one pSIM) -->
     <integer name="config_num_physical_slots">2</integer>
-    
+
     <!-- Whether device supports double tap to wake -->
     <bool name="config_supportDoubleTapWake">true</bool>
 
@@ -256,7 +256,7 @@
     <!-- True if the display hardware only has brightness buckets rather than a full range of
          backlight values -->
     <bool name="config_displayBrightnessBucketsInDoze">true</bool>
-    
+
     <!-- List supported color modes. -->
     <integer-array name="config_availableColorModes">
         <item>0</item> <!-- COLOR_MODE_NATURAL -->
@@ -269,7 +269,7 @@
          supported by the device, but not necessarily appear in config_availableColorModes. The
          regularly selected color mode will be used if this value is negative. -->
     <integer name="config_accessibilityColorMode">2</integer>
-    
+
     <!-- The following two arrays specify which color space to use for display composition when a
          certain color mode is active.
          Composition color spaces are defined in android.view.Display.COLOR_MODE_xxx, and color
@@ -294,6 +294,9 @@
         <item>0</item> <!-- COLOR_MODE_DEFAULT -->
     </integer-array>
 
+    <!-- Whether device has turbo power charging support -->
+    <bool name="config_hasTurboPowerCharger">true</bool>
+
     <!-- Path to fast charging status file to detect whether an oem fast charger is active -->
     <string name="config_oemFastChargerStatusPath" translatable="false">/sys/class/power_supply/bms/fastcharge_mode</string>
 
@@ -310,7 +313,7 @@
 
     <!-- Default color temperature, in Kelvin, to tint the screen when Night display is
          activated. -->
-    <integer name="config_nightDisplayColorTemperatureDefault">3850</integer> 
+    <integer name="config_nightDisplayColorTemperatureDefault">3850</integer>
 
     <!-- The list of package IDs that are allowed to use aux cameras.
          NOTE: If this list is empty then all apps will be able to use aux cameras. -->
@@ -336,4 +339,13 @@
          Settings.System.RING_VIBRATION_INTENSITY more details on the constant values and
          meanings. -->
     <integer name="config_defaultRingVibrationIntensity">3</integer>
+
+    <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
+    <bool name="config_intrusiveBatteryLed">false</bool>
+
+    <!-- Does the device have a notification led -->
+    <bool name="config_hasNotificationLed">false</bool>
+
+    <!-- Whether the device supports Smart Pixels -->
+    <bool name="config_supportSmartPixels">true</bool>
 </resources>

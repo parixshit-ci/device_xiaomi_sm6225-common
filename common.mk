@@ -416,6 +416,10 @@ PRODUCT_VENDOR_PROPERTIES += \
     ro.vendor.se.type=HCE,UICC \
     sys.vendor.shutdown.waittime=500
 
+# Remove unwanted packages
+PRODUCT_PACKAGES += \
+    RemovePackages
+
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors@2.0-ScopedWakelock.vendor \

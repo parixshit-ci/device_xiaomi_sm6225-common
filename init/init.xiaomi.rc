@@ -62,7 +62,7 @@ on boot
 
     #Start mi_thermald
     start mi_thermald
-    
+
     # Vibrator
     chmod 0777 /sys/class/leds/vibrator/state
     chmod 0777 /sys/class/leds/vibrator/duration
