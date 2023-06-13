@@ -144,8 +144,6 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.2-service
 
 # Camera
-$(call inherit-product-if-exists, device/xiaomi/sm6225-common-miuicamera/config.mk)
-
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service_64 \
@@ -154,6 +152,11 @@ PRODUCT_PACKAGES += \
     libstdc++.vendor \
     vendor.qti.hardware.camera.device@1.0.vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
+
+PRODUCT_SYSTEM_PROPERTIES += \
+    persist.vendor.camera.privapp.list=org.codeaurora.snapcam,com.android.camera \
+    vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera \
+    vendor.camera.aux.packagelist.ext=org.codeaurora.snapcam,com.android.camera
 
 PRODUCT_VENDOR_PROPERTIES += \
     camera.disable_zsl_mode=1
@@ -165,13 +168,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.raw.xml
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/camera/camxoverridesettings.txt:$(TARGET_COPY_OUT_VENDOR)/etc/camera/camxoverridesettings.txt \
-    $(LOCAL_PATH)/configs/camera/st_license.lic:$(TARGET_COPY_OUT_VENDOR)/etc/camera/st_license.lic
+    $(LOCAL_PATH)/configs/camera/camxoverridesettings.txt:$(TARGET_COPY_OUT_VENDOR)/etc/camera/camxoverridesettings.txt
 
 # Charger
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/init/vendor.qti.hardware.charger_monitor@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.qti.hardware.charger_monitor@1.0-service.rc
-
 PRODUCT_PRODUCT_PROPERTIES += \
     persist.vendor.quick.charge=1 \
     ro.charger.disable_init_blank=true
@@ -218,12 +217,13 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
 
 PRODUCT_VENDOR_PROPERTIES += \
     debug.sf.disable_backpressure=1 \
+    debug.sf.auto_latch_unsignaled=true \
     debug.sf.layer_caching_active_layer_timeout_ms=1000 \
     debug.hwui.skia_atrace_enabled=false \
     ro.vendor.display.sensortype=2 \
     vendor.display.idle_time=0 \
     vendor.display.idle_time_inactive=0 \
-    vendor.display.qdcm.mode_combine=2
+    vendor.display.qdcm.mode_combine=2 
 
 # DPM
 PRODUCT_VENDOR_PROPERTIES += \
@@ -263,6 +263,9 @@ BOARD_HAVE_QCOM_FM := true
 PRODUCT_VENDOR_PROPERTIES += \
     ro.frp.pst=/dev/block/bootdevice/by-name/frp
 
+# FS-verity
+ro.apk_verity.mode=2
+
 # Graphics
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.opengles.aep.xml \
@@ -291,6 +294,12 @@ PRODUCT_COPY_FILES += \
 # IDC
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/idc/,$(TARGET_COPY_OUT_VENDOR)/usr/idc)
+
+# IMS
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.dbg.volte_avail_ovr=1 \
+    persist.dbg.vt_avail_ovr=1 \
+    persist.dbg.wfc_avail_ovr=1
 
 # Incremental FS
 PRODUCT_VENDOR_OVERRIDES += \
@@ -336,11 +345,11 @@ PRODUCT_PACKAGES += \
 
 # Overlays
 PRODUCT_PACKAGES += \
-    AOSPABengalFrameworksOverlay \
     BengalCarrierConfigOverlay \
     BengalFrameworksOverlay \
     BengalSettingsOverlay \
     BengalSystemUIOverlay \
+    BengalSettingsProviderOverlay \
     BengalWifiOverlay
 
 # Perf
@@ -422,10 +431,6 @@ PRODUCT_VENDOR_PROPERTIES += \
     ro.vendor.radio.features_common=3 \
     ro.vendor.se.type=HCE,UICC \
     sys.vendor.shutdown.waittime=500
-
-# Remove unwanted packages
-PRODUCT_PACKAGES += \
-    RemovePackages
 
 # Sensors
 PRODUCT_PACKAGES += \

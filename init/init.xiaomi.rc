@@ -62,7 +62,7 @@ on boot
 
     #Start mi_thermald
     start mi_thermald
-
+    
     # Vibrator
     chmod 0777 /sys/class/leds/vibrator/state
     chmod 0777 /sys/class/leds/vibrator/duration
@@ -94,7 +94,7 @@ service mi_thermald /system/vendor/bin/mi_thermald
     class main
     user root
     group system
-
+    
 service vendor.audio-hal /vendor/bin/hw/android.hardware.audio.service
     override
     class hal
@@ -108,7 +108,7 @@ service vendor.audio-hal /vendor/bin/hw/android.hardware.audio.service
     task_profiles ProcessCapacityHigh HighPerformance
     socket audio_hw_socket seqpacket 0666 system system
     onrestart restart audioserver
-
+    
 service vendor.camera-provider-2-4 /vendor/bin/hw/android.hardware.camera.provider@2.4-service_64
     override
     interface android.hardware.camera.provider@2.4::ICameraProvider legacy/0
